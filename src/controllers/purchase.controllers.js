@@ -10,7 +10,7 @@ const getAll = catchError(async(req, res) => {
 
 const purchaseCart = catchError(async(req,res)=>{
     const cart = await Cart.findAll(
-        {where: {userId: req.user.id},
+        {include:[Product], where: {userId: req.user.id},
     attributes: ['quantity','productId','userId'],
     raw: true
     })
